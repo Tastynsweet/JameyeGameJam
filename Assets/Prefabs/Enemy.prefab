@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 7028036192447424785}
   - component: {fileID: 1301474117953270810}
   - component: {fileID: 3537730073817960337}
-  - component: {fileID: 5034910199829380195}
   - component: {fileID: 7307646891536740186}
+  - component: {fileID: 5034910199829380195}
+  - component: {fileID: -3163179097789389583}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -85,20 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5034910199829380195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8405163551288061087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 755bec351156ca146a0c4bc14af6d65d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 1
-  speed: 3
 --- !u!61 &7307646891536740186
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144,3 +131,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5034910199829380195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8405163551288061087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 755bec351156ca146a0c4bc14af6d65d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 1
+  speed: 3
+--- !u!114 &-3163179097789389583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8405163551288061087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fa2f0289fdef624bb164f462245d57f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyHealth: 10
