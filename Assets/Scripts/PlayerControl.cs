@@ -18,7 +18,7 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        updateAttack();
     }
 
     private void updateMovement()
@@ -37,13 +37,12 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             playerAttack.basicSwordAttack();
+            Debug.Log("ASDF");
         }
     }
 
     private void FixedUpdate()
     {
         updateMovement();
-
-        updateAttack();
     }
 }
