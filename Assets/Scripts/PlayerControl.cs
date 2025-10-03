@@ -37,7 +37,6 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             playerAttack.basicSwordAttack();
-            Debug.Log("ASDF");
         }
     }
 
