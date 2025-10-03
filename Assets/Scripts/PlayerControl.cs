@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerControl : MonoBehaviour
 {
     [SerializeField]
     float speed = 10f;
+
+    public PlayerAttack playerAttack;
 
     // Start is called before the first frame update
     void Start()
@@ -34,11 +36,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            Vector3 mousePos = Input.mousePosition;
-            {
-                Debug.Log(mousePos.x);
-                Debug.Log(mousePos.y);
-            }
+            playerAttack.basicSwordAttack();
         }
     }
 
