@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    private void FixedUpdate()
+    private void updateMovement()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
@@ -27,6 +27,25 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movementDirection = new Vector3(horizontal, vertical, 0);
         movementDirection.Normalize();
 
-        transform.Translate(Time.deltaTime*speed*movementDirection);
+        transform.Translate(Time.deltaTime * speed * movementDirection);
+    }
+
+    private void updateAttack()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Vector3 mousePos = Input.mousePosition;
+            {
+                Debug.Log(mousePos.x);
+                Debug.Log(mousePos.y);
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        updateMovement();
+
+        updateAttack();
     }
 }
