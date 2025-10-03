@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class EnemyFollow : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject Target;
+    private float Dis;
+    [SerializeField] private float distance = 1.0f;
+    [SerializeField] private float speed = 5.0f;
 
-    // Update is called once per frame
+    void Awake()
+    {
+        Target = GameObject.Find("Player");
+    }
     void Update()
     {
-        
+        Dis = Vector2.Distance(transform.position, Target.transform.position);
+
+        if (Dis >= distance)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, Target.transform.position, speed * Time.deltaTime);
+        }
     }
 }
