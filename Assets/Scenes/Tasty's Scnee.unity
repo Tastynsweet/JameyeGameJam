@@ -412,6 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  playerAttack: {fileID: 0}
 --- !u!23 &1507787713
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -788,6 +789,7 @@ MonoBehaviour:
   spawnInterval: 2
   maxEnemies: 5
   currentEnemies: 0
+  player: {fileID: 1507787709}
 --- !u!4 &2122322255
 Transform:
   m_ObjectHideFlags: 0
