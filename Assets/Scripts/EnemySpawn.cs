@@ -5,15 +5,17 @@ using UnityEngine;
 public class EnemySpawn : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    [SerializeField] private float minxRange = -9f;
-    [SerializeField] private float minyRange = 1f;
-    [SerializeField] private float maxxRange = 9f;
-    [SerializeField] private float maxyRange = 1.6f;
+    [SerializeField] private float minxRange = 5f;
+    [SerializeField] private float minyRange = 4f;
+    [SerializeField] private float maxxRange = 10f;
+    [SerializeField] private float maxyRange = 8f;
     [SerializeField] private float spawnInterval = 2f;
 
     private float timer;
     public int maxEnemies = 100;
     public int currentEnemies;
+    public GameObject player;
+    public 
     void Start()
     {
         
@@ -33,7 +35,9 @@ public class EnemySpawn : MonoBehaviour
 
     void Spawner()
     {
-        Vector3 randomSpawn = new Vector3(Random.Range(minxRange, maxxRange), Random.Range(minyRange, maxyRange), 0f);
+        Transform newPos = player.transform;
+        
+        Vector3 randomSpawn = new Vector3(Random.Range(minxRange + newPos.position.x, maxxRange + newPos.position.x), Random.Range(minyRange + newPos.position.y, maxyRange + newPos.position.y), 0f);
         Instantiate(enemyPrefab, randomSpawn, Quaternion.identity);
         currentEnemies++;
     }

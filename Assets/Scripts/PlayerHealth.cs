@@ -36,4 +36,9 @@ public class PlayerHealth : MonoBehaviour
             damageTimer = Time.time;
         }
     }
+
+    public int GetHealth()
+    {
+        return playerHealth;
+    }
 }
