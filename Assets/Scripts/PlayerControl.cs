@@ -18,7 +18,7 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        updateAttack();
     }
 
     private void updateMovement()
@@ -43,7 +43,5 @@ public class PlayerControl : MonoBehaviour
     private void FixedUpdate()
     {
         updateMovement();
-
-        updateAttack();
     }
 }

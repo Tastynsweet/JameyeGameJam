@@ -9,12 +9,22 @@ public class PlayerAttack : MonoBehaviour
     private Vector3 getMouseDirection()
     {
         Vector3 mousePos = Input.mousePosition;
+        mousePos.x -= Screen.width/2;
+        mousePos.y -= Screen.height/2;
         return mousePos - transform.position;
     }
 
     public void basicSwordAttack()
     {
-        sword.transform.RotateAround(transform.position, Vector3.forward, 1);
+        Vector3 rotation = sword.transform.right;
+        float angle = Vector3.Angle(rotation, getMouseDirection());
+        Vector3 cross = Vector3.Cross(rotation, getMouseDirection());
+        if (cross.z < 0)
+        {
+            angle = -angle;
+        }
+
+        sword.transform.RotateAround(transform.position, Vector3.forward, angle);
         StartCoroutine(activateSword());
     }
 
