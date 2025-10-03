@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class EnemyFollow : MonoBehaviour
 {
-    public GameObject Target;
+    private GameObject Target;
     private float Dis;
     [SerializeField] private float distance = 1.0f;
     [SerializeField] private float speed = 5.0f;
 
-    void Awake()
+    void Start()
     {
         Target = GameObject.Find("Player");
     }
     void Update()
     {
+        if (Target == null) return;
+
         Dis = Vector2.Distance(transform.position, Target.transform.position);
 
         if (Dis >= distance)
