@@ -789,7 +789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fad1def2012255428dbafdf06c34ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 10
+  playerHealth: 100
   damageCooldown: 1
 --- !u!4 &4115605823304835703
 Transform:
@@ -892,7 +892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8b8c5c1bb31d6a4a867d9ab187a6794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3
   playerAttack: {fileID: 4208864529827835442}
 --- !u!1 &5511264789162900036
 GameObject:
@@ -964,8 +964,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c8ea168fcc12ae48aede247643a4ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackDuration: 0.1
-  knockbackSpeed: 10
+  knockbackDuration: 0.02
+  knockbackSpeed: 20
 --- !u!23 &7922165001713963872
 MeshRenderer:
   m_ObjectHideFlags: 0

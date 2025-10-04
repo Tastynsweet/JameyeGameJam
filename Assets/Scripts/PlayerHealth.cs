@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private int playerHealth = 10;
+    [SerializeField] private int playerHealth = 100;
     [SerializeField] private float damageCooldown = 1.0f;
     private float damageTimer = 0f;
 
@@ -15,24 +15,22 @@ public class PlayerHealth : MonoBehaviour
         {
             damageTimer -= Time.deltaTime;
         }
-
+    }
+    public void takeDamage(int damage)
+    {
+        playerHealth -= damage;
         if (playerHealth <= 0)
         {
             Debug.Log("Player Dead");
             Destroy(gameObject);
         }
     }
-    public void takeDamage()
-    {
-        playerHealth--;
-    }
 
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Enemy") && Time.time > (damageTimer + damageCooldown))
         {
-            Debug.Log("Enemy hit");
-            takeDamage();
+            takeDamage(10);
             damageTimer = Time.time;
         }
     }

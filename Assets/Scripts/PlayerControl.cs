@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    [SerializeField]
-    float speed = 10f;
+    [SerializeField] private float speed = 10f;
+    [SerializeField] private float attackCooldown = 0.5f;
 
     public PlayerAttack playerAttack;
+    private float attackCooldownTimer = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -35,9 +36,16 @@ public class PlayerControl : MonoBehaviour
 
     private void updateAttack()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (attackCooldownTimer <= 0)
         {
-            playerAttack.basicSwordAttack();
+            if (Input.GetButton("Fire1"))
+            {
+                attackCooldownTimer = attackCooldown;
+                playerAttack.basicSwordAttack();
+            }
+        } else
+        {
+            attackCooldownTimer -= Time.deltaTime;
         }
     }
 }
