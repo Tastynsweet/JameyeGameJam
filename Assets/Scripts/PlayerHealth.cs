@@ -5,8 +5,12 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int playerHealth = 100;
+    [SerializeField] private int soulHealth = 100;
     [SerializeField] private float damageCooldown = 1.0f;
     private float damageTimer = 0f;
+    private bool soulMode = false;
+    private float soulDecayStart = 0.25f; 
+    private float soulDecayTimer = 0;
 
     // Update is called once per frame
     void Update()
@@ -15,14 +19,33 @@ public class PlayerHealth : MonoBehaviour
         {
             damageTimer -= Time.deltaTime;
         }
+        if (soulDecayTimer > 0)
+        {
+            soulDecayTimer -= Time.deltaTime;
+        } else
+        {
+            soulHealth -= 1;
+            soulDecayTimer = soulDecayStart;
+        }
     }
     public void takeDamage(int damage)
     {
         playerHealth -= damage;
         if (playerHealth <= 0)
         {
-            Debug.Log("Player Dead");
-            Destroy(gameObject);
+            Debug.Log("Entering soul mode");
+            soulMode = true;
+            soulHealth = 70;
+            soulDecayTimer = soulDecayStart;
+        }
+    }
+
+    public void takeSoulDamage(int damage)
+    {
+        soulHealth -= damage;
+        if (soulHealth <= 0)
+        {
+            Debug.Log("Player has died");
         }
     }
 
@@ -30,13 +53,29 @@ public class PlayerHealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy") && Time.time > (damageTimer + damageCooldown))
         {
-            takeDamage(10);
+            if (soulMode)
+            {
+                takeSoulDamage(5);
+            } else
+            {
+                takeDamage(10);
+            }
             damageTimer = Time.time;
         }
     }
 
-    public int GetHealth()
+    public int getHealth()
     {
         return playerHealth;
+    }
+
+    public int getSoulHealth()
+    {
+        return soulHealth;
+    }
+
+    public bool getSoulMode()
+    {
+        return soulMode;
     }
 }

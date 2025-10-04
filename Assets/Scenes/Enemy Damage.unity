@@ -343,7 +343,7 @@ Transform:
   m_GameObject: {fileID: 332537646}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -593,7 +593,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b993d098b793aa749a89f0f23f51f9b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 8405163551288061087, guid: e2e9db4764a0db948b7e43c2883056ec, type: 3}
+  enemyPrefab:
+  - {fileID: 6291814249592562908, guid: 931019d328a442242adab7c379b3b41e, type: 3}
+  - {fileID: 1396299659227442856, guid: 082e09782785f6d46833ad87e15a34fe, type: 3}
+  - {fileID: 6673269511400466528, guid: 31bdb8273cb0b794a830ef0bf8d00396, type: 3}
   minxRange: -8
   minyRange: -4
   maxxRange: 8
@@ -790,6 +793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: 100
+  soulHealth: 100
   damageCooldown: 1
 --- !u!4 &4115605823304835703
 Transform:
@@ -893,6 +897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  attackCooldown: 0.5
   playerAttack: {fileID: 4208864529827835442}
 --- !u!1 &5511264789162900036
 GameObject:
@@ -912,7 +917,7 @@ GameObject:
   - component: {fileID: 4208864529827835442}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

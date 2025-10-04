@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public GameObject sword;
+    public GameObject swordSprite;
 
     private Vector3 getMouseDirection()
     {
@@ -25,13 +26,17 @@ public class PlayerAttack : MonoBehaviour
         }
 
         sword.transform.RotateAround(transform.position, Vector3.forward, angle);
+        swordSprite.transform.RotateAround(transform.position, Vector3.forward, angle);
         StartCoroutine(activateSword());
     }
 
     IEnumerator activateSword()
     {
         sword.SetActive(true);
+        swordSprite.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         sword.SetActive(false);
+        yield return new WaitForSeconds(0.05f);
+        swordSprite.SetActive(false);
     }
 }

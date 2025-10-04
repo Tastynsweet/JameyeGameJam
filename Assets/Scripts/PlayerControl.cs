@@ -7,6 +7,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private float attackCooldown = 0.5f;
 
+    public SpriteRenderer spriteRenderer;
     public PlayerAttack playerAttack;
     private float attackCooldownTimer = 0f;
 
@@ -30,6 +31,16 @@ public class PlayerControl : MonoBehaviour
 
         Vector3 movementDirection = new Vector3(horizontal, vertical, 0);
         movementDirection.Normalize();
+
+        if (movementDirection.x > 0)
+        {
+            
+            spriteRenderer.flipX = false;
+        }
+        if (movementDirection.x < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
 
         transform.Translate(Time.deltaTime * speed * movementDirection);
     }

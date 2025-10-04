@@ -6,12 +6,16 @@ using UnityEngine;
 public class HealthText : MonoBehaviour
 {
     public TextMeshProUGUI healthText;
-    public PlayerHealth healthCount;
-    private int currentHealth;
+    public PlayerHealth playerHealth;
 
     void Update()
     {
-        currentHealth = healthCount.GetHealth();
-        healthText.text = "Health: " + currentHealth.ToString();
+        if (playerHealth.getSoulMode())
+        {
+            healthText.text = "Soul Health: " + playerHealth.getSoulHealth().ToString();
+        } else
+        {
+            healthText.text = "Health: " + playerHealth.getHealth().ToString();
+        }
     }
 }
