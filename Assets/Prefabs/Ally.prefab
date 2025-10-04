@@ -12,13 +12,14 @@ GameObject:
   - component: {fileID: 1237893455217507808}
   - component: {fileID: 7387654933072128273}
   - component: {fileID: 4365185727029263697}
+  - component: {fileID: 8290477799142539724}
   m_Layer: 0
   m_Name: Ally
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4740737270551335421
 Transform:
   m_ObjectHideFlags: 0
@@ -152,3 +153,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.077003, y: 1.0211757}
   m_EdgeRadius: 0
+--- !u!114 &8290477799142539724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819758333175524191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137317fb5b3ecc04790a8b9e3bf6efdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDistance: 3
+  speed: 5

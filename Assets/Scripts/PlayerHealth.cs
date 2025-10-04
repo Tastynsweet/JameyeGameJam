@@ -12,6 +12,8 @@ public class PlayerHealth : MonoBehaviour
     private float soulDecayStart = 0.25f; 
     private float soulDecayTimer = 0;
 
+    public GameObject death;
+
     // Update is called once per frame
     void Update()
     {
@@ -34,6 +36,8 @@ public class PlayerHealth : MonoBehaviour
         if (playerHealth <= 0)
         {
             Debug.Log("Entering soul mode");
+            death.SetActive(true);
+            death.transform.position = transform.position;
             soulMode = true;
             soulHealth = 70;
             soulDecayTimer = soulDecayStart;
@@ -64,6 +68,7 @@ public class PlayerHealth : MonoBehaviour
         soulHealth += heal;
         if (soulHealth >= 100)
         {
+            death.SetActive(false);
             soulMode = false;
             playerHealth = 100;
         }
