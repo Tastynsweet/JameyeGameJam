@@ -24,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
             soulDecayTimer -= Time.deltaTime;
         } else
         {
-            soulHealth -= 1;
+            takeSoulDamage(1);
             soulDecayTimer = soulDecayStart;
         }
     }
@@ -40,12 +40,32 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public void healDamage(int heal)
+    {
+        playerHealth += heal;
+        if (playerHealth > 100)
+        {
+            playerHealth = 100;
+        }
+    }
+
     public void takeSoulDamage(int damage)
     {
         soulHealth -= damage;
         if (soulHealth <= 0)
         {
             Debug.Log("Player has died");
+            Destroy(gameObject);
+        }
+    }
+
+    public void healSoulDamage(int heal)
+    {
+        soulHealth += heal;
+        if (soulHealth >= 100)
+        {
+            soulMode = false;
+            playerHealth = 100;
         }
     }
 

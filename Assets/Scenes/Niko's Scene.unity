@@ -155,6 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackDuration: 0.05
   knockbackSpeed: 30
+  playerHealth: {fileID: 1610516251}
 --- !u!60 &68287841
 PolygonCollider2D:
   m_ObjectHideFlags: 0
