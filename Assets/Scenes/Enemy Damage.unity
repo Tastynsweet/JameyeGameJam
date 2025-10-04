@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -893,7 +892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8b8c5c1bb31d6a4a867d9ab187a6794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
   playerAttack: {fileID: 4208864529827835442}
 --- !u!1 &5511264789162900036
 GameObject:
@@ -965,6 +964,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c8ea168fcc12ae48aede247643a4ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackDuration: 0.1
+  knockbackSpeed: 10
 --- !u!23 &7922165001713963872
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1026,9 +1027,9 @@ GameObject:
   - component: {fileID: 4779235765189661302}
   - component: {fileID: 8771480408823689883}
   - component: {fileID: 2559985611409755414}
-  - component: {fileID: 7484391239862431466}
   - component: {fileID: 9016079802505098296}
   - component: {fileID: 9016079802505098295}
+  - component: {fileID: 7484391239862431466}
   m_Layer: 0
   m_Name: SwordHitbox
   m_TagString: Untagged

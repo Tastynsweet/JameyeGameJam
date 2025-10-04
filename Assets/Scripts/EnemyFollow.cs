@@ -5,9 +5,13 @@ using UnityEngine;
 public class EnemyFollow : MonoBehaviour
 {
     private GameObject Target;
-    private float Dis;
-    [SerializeField] private float distance = 1.0f;
+    private float distanceToPlayer;
+    [SerializeField] private float minDistance = 1.0f;
     [SerializeField] private float speed = 5.0f;
+
+    private bool isStunned = false;
+    private float remainingStunTime = 0f;
+    private Vector3 knockbackVector = Vector3.zero;
 
     void Start()
     {
@@ -15,13 +19,41 @@ public class EnemyFollow : MonoBehaviour
     }
     void Update()
     {
-        if (Target == null) return;
+        
 
-        Dis = Vector2.Distance(transform.position, Target.transform.position);
-
-        if (Dis >= distance)
+        if (isStunned)
         {
-            transform.position = Vector2.MoveTowards(transform.position, Target.transform.position, speed * Time.deltaTime);
+            if (remainingStunTime <= 0f) // enemy is no longer stunned
+            {
+                isStunned = false;
+            } else // enemy is stunned, take knockback and countdown stun time
+            {
+                remainingStunTime -= Time.deltaTime;
+                transform.position = transform.position + Time.deltaTime * knockbackVector;
+            }
+        } else
+        {
+            followPlayer();
         }
+    }
+
+    // moves this enemy directly towards the player
+    private void followPlayer()
+    {
+        if (Target != null)
+        {
+            distanceToPlayer = Vector2.Distance(transform.position, Target.transform.position);
+            if (distanceToPlayer >= minDistance)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, Target.transform.position, speed * Time.deltaTime);
+            }
+        }
+    }
+
+    public void takeKnockback(Vector3 knockback, float stunTime)
+    {
+        isStunned = true;
+        remainingStunTime = stunTime;
+        knockbackVector = knockback;
     }
 }
