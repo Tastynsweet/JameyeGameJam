@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
-    public GameObject enemyPrefab;
+    public GameObject[] enemyPrefab;
     [SerializeField] private float minxRange = 5f;
     [SerializeField] private float minyRange = 4f;
     [SerializeField] private float maxxRange = 10f;
@@ -15,7 +15,6 @@ public class EnemySpawn : MonoBehaviour
     public int maxEnemies = 100;
     public int currentEnemies;
     public GameObject player;
-    public 
     void Start()
     {
         
@@ -38,7 +37,7 @@ public class EnemySpawn : MonoBehaviour
         Transform newPos = player.transform;
         
         Vector3 randomSpawn = new Vector3(Random.Range(minxRange + newPos.position.x, maxxRange + newPos.position.x), Random.Range(minyRange + newPos.position.y, maxyRange + newPos.position.y), 0f);
-        Instantiate(enemyPrefab, randomSpawn, Quaternion.identity);
+        Instantiate(enemyPrefab[Random.Range(0, enemyPrefab.Length)], randomSpawn, Quaternion.identity);
         currentEnemies++;
     }
 }
