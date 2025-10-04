@@ -7,14 +7,17 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private float attackCooldown = 0.5f;
 
-    public SpriteRenderer spriteRenderer;
-    public PlayerAttack playerAttack;
+    private SpriteRenderer spriteRenderer;
+    private PlayerAttack playerAttack;
+    private PlayerHealth playerHealth;
     private float attackCooldownTimer = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        playerAttack = GetComponent<PlayerAttack>();
+        playerHealth = GetComponent<PlayerHealth>();
     }
 
     // Update is called once per frame
@@ -52,7 +55,13 @@ public class PlayerControl : MonoBehaviour
             if (Input.GetButton("Fire1"))
             {
                 attackCooldownTimer = attackCooldown;
-                playerAttack.basicSwordAttack();
+                if (playerHealth.getSoulMode())
+                {
+                    playerAttack.scytheAttack();
+                } else
+                {
+                    playerAttack.basicSwordAttack();
+                }
             }
         } else
         {
