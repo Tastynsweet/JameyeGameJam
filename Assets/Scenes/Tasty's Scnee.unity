@@ -154,7 +154,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1552001928}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &97268793
 TilemapRenderer:
@@ -1008,7 +1008,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2122322254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1172,4 +1172,4 @@ SceneRoots:
   - {fileID: 2122322255}
   - {fileID: 2122958391}
   - {fileID: 1713937406}
-  - {fileID: 1552001928}
+  - {fileID: 97268792}
