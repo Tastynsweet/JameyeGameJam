@@ -10,17 +10,16 @@ public class HealthFillController : MonoBehaviour
 
     public void setHealth(int health)
     {
-        Debug.Log("health fill set to " + health);
         healthSlider.value = health/100f;
     }
 
     public void setNormalColor()
     {
-        healthFill.color = new Color(183, 53, 53);
+        healthFill.color = new Color32(183, 53, 53, 255);
     }
 
     public void setSoulColor()
     {
-        healthFill.color = new Color(22, 169, 150);
+        healthFill.color = new Color32(250, 0, 250, 255);
     }
 }

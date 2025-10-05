@@ -14,8 +14,16 @@ public class PlayerHealth : MonoBehaviour
     private bool soulMode = false;
     private float soulDecayStart = 0.25f; 
     private float soulDecayTimer = 0;
+    private SpriteRenderer spriteRenderer;
+    private Color originalSpriteColor;
 
     public GameObject death;
+
+    private void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalSpriteColor = spriteRenderer.color;
+    }
 
     // Update is called once per frame
     void Update()
@@ -79,7 +87,6 @@ public class PlayerHealth : MonoBehaviour
 
 
 
-
     public void takeDamage(int damage)
     {
         playerHealth -= damage;
@@ -88,6 +95,15 @@ public class PlayerHealth : MonoBehaviour
             normalToSoul();
         }
         updateHealthUI();
+
+        spriteRenderer.color = new Color32(166, 91, 91, 255);
+        StartCoroutine(flashRed());
+    }
+
+    IEnumerator flashRed()
+    {
+        yield return new WaitForSeconds(0.5f);
+        spriteRenderer.color = originalSpriteColor;
     }
 
     public void healDamage(int heal)
@@ -106,6 +122,7 @@ public class PlayerHealth : MonoBehaviour
         if (soulHealth <= 0)
         {
             Debug.Log("Player has died");
+            soulHealth = 0;
             fullScreenEffectController.disableAllShaders();
             Destroy(gameObject);
         }
@@ -122,7 +139,16 @@ public class PlayerHealth : MonoBehaviour
         updateHealthUI();
     }
 
-
+    public void healPickup(int heal)
+    {
+        if (getSoulMode())
+        {
+            healSoulDamage(heal);
+        } else
+        {
+            healDamage(heal);
+        }
+    }
 
 
 
@@ -130,12 +156,17 @@ public class PlayerHealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy") && Time.time > (damageTimer + damageCooldown))
         {
+            EnemyAttack enemyAttack = other.gameObject.GetComponent<EnemyAttack>();
+            int damage = enemyAttack.getDamage();
+
             if (soulMode)
             {
-                takeSoulDamage(5);
+                takeSoulDamage(damage/2);
+                spriteRenderer.color = new Color32(166, 91, 91, 255);
+                StartCoroutine(flashRed());
             } else
             {
-                takeDamage(10);
+                takeDamage(damage);
             }
             damageTimer = Time.time;
         }

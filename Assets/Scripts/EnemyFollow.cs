@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyFollow : MonoBehaviour
 {
     private GameObject Target;
+    private SpriteRenderer spriteRenderer;
     private float distanceToPlayer;
     [SerializeField] private float minDistance = 1.0f;
     [SerializeField] private float speed = 5.0f;
@@ -16,11 +17,10 @@ public class EnemyFollow : MonoBehaviour
     void Start()
     {
         Target = GameObject.Find("Player");
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     void Update()
     {
-        
-
         if (isStunned)
         {
             if (remainingStunTime <= 0f) // enemy is no longer stunned
@@ -46,6 +46,15 @@ public class EnemyFollow : MonoBehaviour
             if (distanceToPlayer >= minDistance)
             {
                 transform.position = Vector2.MoveTowards(transform.position, Target.transform.position, speed * Time.deltaTime);
+                Vector3 movementVector = Target.transform.position - transform.position;
+                if (movementVector.x > 0)
+                {
+                    spriteRenderer.flipX = true;
+                }
+                if (movementVector.x < 0)
+                {
+                    spriteRenderer.flipX = false;
+                }
             }
         }
     }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -7605681917895699384}
   - component: {fileID: 8705917792211443154}
   - component: {fileID: 3069495495442678837}
+  - component: {fileID: 3510276271381121758}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Enemy
@@ -122,6 +123,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 50
+  healthPickup: {fileID: 3391660270825987639, guid: 60b892694d00547438aa3787fb47ff06, type: 3}
+  score: {fileID: 0}
 --- !u!114 &8705917792211443154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,3 +184,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.082892, y: 2.062169}
   m_EdgeRadius: 0
+--- !u!114 &3510276271381121758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6673269511400466528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ee3461ed112234db4875bf10f8472f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

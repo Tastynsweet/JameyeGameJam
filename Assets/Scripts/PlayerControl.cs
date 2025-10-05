@@ -37,7 +37,6 @@ public class PlayerControl : MonoBehaviour
 
         if (movementDirection.x > 0)
         {
-            
             spriteRenderer.flipX = false;
         }
         if (movementDirection.x < 0)

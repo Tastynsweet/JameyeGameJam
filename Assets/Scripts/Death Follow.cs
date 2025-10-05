@@ -6,6 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 public class DeathFollow : MonoBehaviour
 {
     private GameObject Target;
+    private SpriteRenderer spriteRenderer;
     private float distanceToPlayer;
     [SerializeField] private float minDistance = 1.0f;
     [SerializeField] private float speed = 5.0f;
@@ -14,6 +15,7 @@ public class DeathFollow : MonoBehaviour
     void Start()
     {
         Target = GameObject.Find("Player");
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -26,10 +28,22 @@ public class DeathFollow : MonoBehaviour
     {
         if (Target != null)
         {
-            distanceToPlayer = Vector2.Distance(transform.position, Target.transform.position);
+            Vector3 follow = Target.transform.position + new Vector3(0,1,0);
+
+            distanceToPlayer = Vector2.Distance(transform.position, follow);
             if (distanceToPlayer >= minDistance)
             {
-                transform.position = Vector2.MoveTowards(transform.position, Target.transform.position, speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, follow, speed * Time.deltaTime);
+
+                Vector3 movementVector = follow - transform.position;
+                if (movementVector.x > 0)
+                {
+                    spriteRenderer.flipX = false;
+                }
+                if (movementVector.x < 0)
+                {
+                    spriteRenderer.flipX = true;
+                }
             }
         }
     }
