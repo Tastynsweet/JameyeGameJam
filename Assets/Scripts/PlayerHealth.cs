@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int playerHealth = 100;
     [SerializeField] private int soulHealth = 100;
     [SerializeField] private float damageCooldown = 1.0f;
+    [SerializeField] private FullScreenEffectController fullScreenEffectController;
     private float damageTimer = 0f;
     private bool soulMode = false;
     private float soulDecayStart = 0.25f; 
@@ -37,6 +38,7 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.Log("Entering soul mode");
             death.SetActive(true);
+            fullScreenEffectController.enableSoulShader();
             death.transform.position = transform.position;
             soulMode = true;
             soulHealth = 70;
@@ -69,6 +71,7 @@ public class PlayerHealth : MonoBehaviour
         if (soulHealth >= 100)
         {
             death.SetActive(false);
+            fullScreenEffectController.enableFogShader();
             soulMode = false;
             playerHealth = 100;
         }
