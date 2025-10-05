@@ -8,6 +8,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int soulHealth = 100;
     [SerializeField] private float damageCooldown = 1.0f;
     [SerializeField] private FullScreenEffectController fullScreenEffectController;
+    [SerializeField] private HealthText healthText;
+    [SerializeField] private HealthFillController healthFillController;
     private float damageTimer = 0f;
     private bool soulMode = false;
     private float soulDecayStart = 0.25f; 
@@ -31,19 +33,61 @@ public class PlayerHealth : MonoBehaviour
             soulDecayTimer = soulDecayStart;
         }
     }
+
+
+
+    // When player goes from normal mode to soul mode
+    private void normalToSoul()
+    {
+        Debug.Log("Entering soul mode");
+        death.SetActive(true);
+        fullScreenEffectController.enableSoulShader();
+        death.transform.position = transform.position;
+        soulMode = true;
+        healthText.setSoulHeart();
+        healthFillController.setSoulColor();
+        soulHealth = 70;
+        soulDecayTimer = soulDecayStart;
+    }
+
+    // When player goes from soul mode to normal mode
+    private void soulToNormal()
+    {
+        death.SetActive(false);
+        fullScreenEffectController.enableFogShader();
+        soulMode = false;
+        healthText.setNormalHeart();
+        healthFillController.setNormalColor();
+        playerHealth = 100;
+    }
+
+    // updates all health related elements in the UI
+    private void updateHealthUI()
+    {
+        if (getSoulMode())
+        {
+            healthText.setHealth(soulHealth);
+            healthFillController.setHealth(soulHealth);
+        }
+        else
+        {
+            healthText.setHealth(playerHealth);
+            healthFillController.setHealth(playerHealth);
+        }
+    }
+
+
+
+
+
     public void takeDamage(int damage)
     {
         playerHealth -= damage;
         if (playerHealth <= 0)
         {
-            Debug.Log("Entering soul mode");
-            death.SetActive(true);
-            fullScreenEffectController.enableSoulShader();
-            death.transform.position = transform.position;
-            soulMode = true;
-            soulHealth = 70;
-            soulDecayTimer = soulDecayStart;
+            normalToSoul();
         }
+        updateHealthUI();
     }
 
     public void healDamage(int heal)
@@ -53,6 +97,7 @@ public class PlayerHealth : MonoBehaviour
         {
             playerHealth = 100;
         }
+        updateHealthUI();
     }
 
     public void takeSoulDamage(int damage)
@@ -61,8 +106,10 @@ public class PlayerHealth : MonoBehaviour
         if (soulHealth <= 0)
         {
             Debug.Log("Player has died");
+            fullScreenEffectController.disableAllShaders();
             Destroy(gameObject);
         }
+        updateHealthUI();
     }
 
     public void healSoulDamage(int heal)
@@ -70,12 +117,14 @@ public class PlayerHealth : MonoBehaviour
         soulHealth += heal;
         if (soulHealth >= 100)
         {
-            death.SetActive(false);
-            fullScreenEffectController.enableFogShader();
-            soulMode = false;
-            playerHealth = 100;
+            soulToNormal();
         }
+        updateHealthUI();
     }
+
+
+
+
 
     void OnTriggerStay2D(Collider2D other)
     {

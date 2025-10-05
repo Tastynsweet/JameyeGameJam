@@ -24,4 +24,10 @@ public class FullScreenEffectController : MonoBehaviour
         rendererData.rendererFeatures[0].SetActive(false);
         rendererData.rendererFeatures[1].SetActive(true);
     }
+
+    public void disableAllShaders()
+    {
+        rendererData.rendererFeatures[0].SetActive(false);
+        rendererData.rendererFeatures[1].SetActive(false);
+    }
 }

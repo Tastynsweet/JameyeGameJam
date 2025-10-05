@@ -5,17 +5,29 @@ using UnityEngine;
 
 public class HealthText : MonoBehaviour
 {
-    public TextMeshProUGUI healthText;
-    public PlayerHealth playerHealth;
+    [SerializeField] private TextMeshProUGUI healthText;
+    [SerializeField] private GameObject normalHeart;
+    [SerializeField] private GameObject soulHeart;
 
-    void Update()
+    private void Start()
     {
-        if (playerHealth.getSoulMode())
-        {
-            healthText.text = "Soul Health: " + playerHealth.getSoulHealth().ToString();
-        } else
-        {
-            healthText.text = "Health: " + playerHealth.getHealth().ToString();
-        }
+        setNormalHeart();
+    }
+
+    public void setHealth(int health)
+    {
+        healthText.text = health.ToString();
+    }
+
+    public void setNormalHeart()
+    {
+        normalHeart.SetActive(true);
+        soulHeart.SetActive(false);
+    }
+
+    public void setSoulHeart()
+    {
+        soulHeart.SetActive(true);
+        normalHeart.SetActive(false);
     }
 }
