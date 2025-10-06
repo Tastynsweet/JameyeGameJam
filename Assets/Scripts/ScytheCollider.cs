@@ -15,7 +15,8 @@ public class ScytheCollider : MonoBehaviour
         {
             EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
             EnemyFollow enemyFollow = other.gameObject.GetComponent<EnemyFollow>();
-            if (enemyHealth != null && enemyFollow != null)
+            RangedEnemyFollow rangedEnemyFollow = other.gameObject.GetComponent<RangedEnemyFollow>();
+            if (enemyHealth != null && (enemyFollow != null || rangedEnemyFollow != null))
             {
                 playerHealth.healSoulDamage(1);
                 enemyHealth.takeDamage(3);
