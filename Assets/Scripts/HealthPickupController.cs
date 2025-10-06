@@ -10,7 +10,7 @@ public class HealthPickupController : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
-        if (timer > 30f)
+        if (timer > 20f)
         {
             Destroy(gameObject);
         }
@@ -21,7 +21,7 @@ public class HealthPickupController : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             PlayerHealth playerHealth = other.gameObject.GetComponent<PlayerHealth>();
-            playerHealth.healPickup(5);
+            playerHealth.healPickup(7);
             Destroy(gameObject);
         }
     }

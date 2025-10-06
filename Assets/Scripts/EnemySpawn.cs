@@ -9,12 +9,11 @@ public class EnemySpawn : MonoBehaviour
     [SerializeField] private float minyRange = 4f;
     [SerializeField] private float maxxRange = 10f;
     [SerializeField] private float maxyRange = 8f;
-    [SerializeField] private float spawnInterval = 2f;
+    [SerializeField] private float spawnInterval = 1.2f;
 
     private float spawnAccelerationTimer = 0f;
     private float spawnAccelerationInterval = 10f;
     private float spawnTimer = 0f;
-    public int currentEnemies;
     public GameObject player;
     void Start()
     {
@@ -48,8 +47,7 @@ public class EnemySpawn : MonoBehaviour
         Transform newPos = player.transform;
         
         Vector3 randomSpawn = new Vector3(Random.Range(minxRange + newPos.position.x, maxxRange + newPos.position.x), Random.Range(minyRange + newPos.position.y, maxyRange + newPos.position.y), 0f);
-        Instantiate(pickEnemy(), randomSpawn, Quaternion.identity);
-        currentEnemies++;
+        GameObject enemy = Instantiate(pickEnemy(), randomSpawn, Quaternion.identity);
     }
 
     private GameObject pickEnemy()

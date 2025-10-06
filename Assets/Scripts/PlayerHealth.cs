@@ -18,6 +18,8 @@ public class PlayerHealth : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Color originalSpriteColor;
 
+    private float damageMultiplierTimer = 0f;
+
     public GameObject death;
 
     private void Start()
@@ -45,6 +47,7 @@ public class PlayerHealth : MonoBehaviour
                 soulDecayTimer = soulDecayStart;
             }
         }
+        damageMultiplierTimer += Time.deltaTime;
     }
 
 
@@ -91,10 +94,14 @@ public class PlayerHealth : MonoBehaviour
 
 
 
+    private float damageTimerToMultiplier()
+    {
+        return 1f + (damageMultiplierTimer / 300f);
+    }
 
     public void takeDamage(int damage)
     {
-        playerHealth -= damage;
+        playerHealth -= (int) (damage * damageTimerToMultiplier());
         if (playerHealth <= 0)
         {
             normalToSoul();
@@ -123,7 +130,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void takeSoulDamage(int damage)
     {
-        soulHealth -= damage;
+        soulHealth = (int)(damage * damageTimerToMultiplier());
         if (soulHealth <= 0)
         {
             Debug.Log("Player has died");
@@ -167,7 +174,7 @@ public class PlayerHealth : MonoBehaviour
 
             if (soulMode)
             {
-                takeSoulDamage(damage/4);
+                takeSoulDamage(damage/2);
                 spriteRenderer.color = new Color32(166, 91, 91, 255);
                 StartCoroutine(flashRed());
             } else
