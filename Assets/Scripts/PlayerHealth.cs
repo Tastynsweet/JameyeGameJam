@@ -12,7 +12,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private HealthFillController healthFillController;
     private float damageTimer = 0f;
     private bool soulMode = false;
-    private float soulDecayStart = 0.25f; 
+    private float soulDecayStart = 0.1f; 
     private float soulDecayTimer = 0;
     private SpriteRenderer spriteRenderer;
     private Color originalSpriteColor;
@@ -164,7 +164,7 @@ public class PlayerHealth : MonoBehaviour
 
             if (soulMode)
             {
-                takeSoulDamage(damage/2);
+                takeSoulDamage(damage/4);
                 spriteRenderer.color = new Color32(166, 91, 91, 255);
                 StartCoroutine(flashRed());
             } else

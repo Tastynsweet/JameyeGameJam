@@ -22,10 +22,14 @@ public class PlayerControl : MonoBehaviour
         playerHealth = GetComponent<PlayerHealth>();
     }
 
+    private void FixedUpdate()
+    {
+        updateMovement();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        updateMovement();
         updateAttack();
     }
 

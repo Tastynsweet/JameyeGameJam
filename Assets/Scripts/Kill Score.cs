@@ -11,6 +11,6 @@ public class KillScore : MonoBehaviour
     public void addScore()
     {
         kills++;
-        killText.text = "Kills: " + kills; 
+        killText.text = kills.ToString(); 
     }
 }
