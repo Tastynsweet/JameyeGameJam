@@ -21,7 +21,7 @@ public class HealthPickupController : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             PlayerHealth playerHealth = other.gameObject.GetComponent<PlayerHealth>();
-            playerHealth.healPickup(7);
+            playerHealth.healPickup(10);
             Destroy(gameObject);
         }
     }

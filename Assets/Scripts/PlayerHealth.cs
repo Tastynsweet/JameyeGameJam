@@ -130,7 +130,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void takeSoulDamage(int damage)
     {
-        soulHealth = (int)(damage * damageTimerToMultiplier());
+        soulHealth -= (int)(damage * damageTimerToMultiplier());
         if (soulHealth <= 0)
         {
             Debug.Log("Player has died");
