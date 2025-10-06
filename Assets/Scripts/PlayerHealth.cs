@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -128,6 +129,7 @@ public class PlayerHealth : MonoBehaviour
             soulHealth = 0;
             fullScreenEffectController.disableAllShaders();
             Destroy(gameObject);
+            SceneManager.LoadSceneAsync(2);
         }
         updateHealthUI();
     }
