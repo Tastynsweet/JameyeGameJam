@@ -12,23 +12,25 @@ public class EnemySpawn : MonoBehaviour
     [SerializeField] private float spawnInterval = 2f;
 
     private float timer;
+    private float spawnTimer;
     public int maxEnemies = 100;
     public int currentEnemies;
     public GameObject player;
     void Start()
     {
-        
+        timer = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        spawnTimer += Time.deltaTime;
         timer += Time.deltaTime;
 
-        if (currentEnemies < maxEnemies && timer >= spawnInterval)
+        if (currentEnemies < maxEnemies && spawnTimer >= spawnInterval)
         {
             Spawner();
-            timer = 0f;
+            spawnTimer = 0f;
         }
     }
 

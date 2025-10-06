@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     [SerializeField] private float speed = 10f;
+    [SerializeField] private float soulSpeedMultiplier = 1.5f;
     [SerializeField] private float attackCooldown = 0.5f;
     [SerializeField] private float scytheCooldown = 0.5f;
 
@@ -50,7 +51,13 @@ public class PlayerControl : MonoBehaviour
             spriteRenderer.flipX = true;
         }
 
-        transform.Translate(Time.deltaTime * speed * movementDirection);
+        float finalSpeed = speed;
+        if (playerHealth.getSoulMode())
+        {
+            finalSpeed *= soulSpeedMultiplier;
+        }
+
+        transform.Translate(Time.deltaTime * finalSpeed * movementDirection);
     }
 
     private void updateAttack()

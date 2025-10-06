@@ -5,7 +5,7 @@ using UnityEngine;
 public class ScytheCollider : MonoBehaviour
 {
     [SerializeField] private float knockbackDuration = 0.05f;
-    [SerializeField] private float knockbackSpeed = 30f;
+    [SerializeField] private float knockbackSpeed = 20f;
 
     public PlayerHealth playerHealth;
 
