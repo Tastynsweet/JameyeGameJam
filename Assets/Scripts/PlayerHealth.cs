@@ -12,7 +12,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private HealthFillController healthFillController;
     private float damageTimer = 0f;
     private bool soulMode = false;
-    private float soulDecayStart = 0.1f; 
+    private float soulDecayStart = 0.2f; 
     private float soulDecayTimer = 0;
     private SpriteRenderer spriteRenderer;
     private Color originalSpriteColor;
@@ -23,6 +23,7 @@ public class PlayerHealth : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalSpriteColor = spriteRenderer.color;
+        fullScreenEffectController.enableFogShader();
     }
 
     // Update is called once per frame
@@ -53,7 +54,7 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Entering soul mode");
         death.SetActive(true);
         fullScreenEffectController.enableSoulShader();
-        death.transform.position = transform.position;
+        death.transform.position = transform.position + new Vector3(0, 1, 0);
         soulMode = true;
         healthText.setSoulHeart();
         healthFillController.setSoulColor();
@@ -172,6 +173,29 @@ public class PlayerHealth : MonoBehaviour
                 takeDamage(damage);
             }
             damageTimer = Time.time;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Projectile") && Time.time > (damageTimer + damageCooldown))
+        {
+            EnemyAttack enemyAttack = other.gameObject.GetComponent<EnemyAttack>();
+            int damage = enemyAttack.getDamage();
+
+            if (soulMode)
+            {
+                takeSoulDamage(damage / 4);
+                spriteRenderer.color = new Color32(166, 91, 91, 255);
+                StartCoroutine(flashRed());
+            }
+            else
+            {
+                takeDamage(damage);
+            }
+            damageTimer = Time.time;
+
+            Destroy(other.gameObject);
         }
     }
 

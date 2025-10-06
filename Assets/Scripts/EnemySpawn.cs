@@ -11,26 +11,35 @@ public class EnemySpawn : MonoBehaviour
     [SerializeField] private float maxyRange = 8f;
     [SerializeField] private float spawnInterval = 2f;
 
-    private float timer;
-    private float spawnTimer;
-    public int maxEnemies = 100;
+    private float spawnAccelerationTimer = 0f;
+    private float spawnAccelerationInterval = 10f;
+    private float spawnTimer = 0f;
     public int currentEnemies;
     public GameObject player;
     void Start()
     {
-        timer = 0f;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         spawnTimer += Time.deltaTime;
-        timer += Time.deltaTime;
+        spawnAccelerationTimer += Time.deltaTime;
 
-        if (currentEnemies < maxEnemies && spawnTimer >= spawnInterval)
+        if (spawnTimer >= spawnInterval)
         {
             Spawner();
             spawnTimer = 0f;
+        }
+
+        if (spawnAccelerationTimer >= spawnAccelerationInterval)
+        {
+            spawnAccelerationTimer = 0f;
+            if (spawnInterval >= 0.2f)
+            {
+                spawnInterval -= 0.1f;
+            }
         }
     }
 
@@ -39,7 +48,26 @@ public class EnemySpawn : MonoBehaviour
         Transform newPos = player.transform;
         
         Vector3 randomSpawn = new Vector3(Random.Range(minxRange + newPos.position.x, maxxRange + newPos.position.x), Random.Range(minyRange + newPos.position.y, maxyRange + newPos.position.y), 0f);
-        Instantiate(enemyPrefab[Random.Range(0, enemyPrefab.Length)], randomSpawn, Quaternion.identity);
+        Instantiate(pickEnemy(), randomSpawn, Quaternion.identity);
         currentEnemies++;
+    }
+
+    private GameObject pickEnemy()
+    {
+        int random = Random.Range(0, 100);
+
+        if (random <= 30)
+        {
+            return enemyPrefab[0];
+        }
+        if (random <= 60)
+        {
+            return enemyPrefab[1];
+        }
+        if (random <= 90)
+        {
+            return enemyPrefab[2];
+        }
+        return enemyPrefab[3];
     }
 }

@@ -42,19 +42,20 @@ public class EnemyFollow : MonoBehaviour
     {
         if (Target != null)
         {
+            Vector3 movementVector = Target.transform.position - transform.position;
+            if (movementVector.x > 0)
+            {
+                spriteRenderer.flipX = true;
+            }
+            if (movementVector.x < 0)
+            {
+                spriteRenderer.flipX = false;
+            }
+
             distanceToPlayer = Vector2.Distance(transform.position, Target.transform.position);
             if (distanceToPlayer >= minDistance)
             {
                 transform.position = Vector2.MoveTowards(transform.position, Target.transform.position, speed * Time.deltaTime);
-                Vector3 movementVector = Target.transform.position - transform.position;
-                if (movementVector.x > 0)
-                {
-                    spriteRenderer.flipX = true;
-                }
-                if (movementVector.x < 0)
-                {
-                    spriteRenderer.flipX = false;
-                }
             }
         }
     }
