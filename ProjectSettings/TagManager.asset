@@ -39,12 +39,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
   - name: Background
     uniqueID: 2834130613
+    locked: 0
+  - name: Entities
+    uniqueID: 225933937
     locked: 0
   - name: Weapon
     uniqueID: 326185737
     locked: 0
-  - name: Default
-    uniqueID: 0
+  - name: Player
+    uniqueID: 1353037453
     locked: 0

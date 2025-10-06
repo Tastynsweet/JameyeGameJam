@@ -37,8 +37,11 @@ public class PlayerHealth : MonoBehaviour
             soulDecayTimer -= Time.deltaTime;
         } else
         {
-            takeSoulDamage(1);
-            soulDecayTimer = soulDecayStart;
+            if (getSoulMode())
+            {
+                takeSoulDamage(1);
+                soulDecayTimer = soulDecayStart;
+            }
         }
     }
 

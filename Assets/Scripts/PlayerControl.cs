@@ -6,11 +6,13 @@ public class PlayerControl : MonoBehaviour
 {
     [SerializeField] private float speed = 10f;
     [SerializeField] private float attackCooldown = 0.5f;
+    [SerializeField] private float scytheCooldown = 0.5f;
 
     private SpriteRenderer spriteRenderer;
     private PlayerAttack playerAttack;
     private PlayerHealth playerHealth;
     private float attackCooldownTimer = 0f;
+    private float scytheCooldownTimer = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -49,22 +51,24 @@ public class PlayerControl : MonoBehaviour
 
     private void updateAttack()
     {
-        if (attackCooldownTimer <= 0)
+        if (attackCooldownTimer <= 0 && scytheCooldownTimer <= 0)
         {
             if (Input.GetButton("Fire1"))
             {
-                attackCooldownTimer = attackCooldown;
                 if (playerHealth.getSoulMode())
                 {
                     playerAttack.scytheAttack();
+                    scytheCooldownTimer = scytheCooldown;
                 } else
                 {
                     playerAttack.basicSwordAttack();
+                    attackCooldownTimer = attackCooldown;
                 }
             }
         } else
         {
             attackCooldownTimer -= Time.deltaTime;
+            scytheCooldownTimer -= Time.deltaTime;
         }
     }
 }
