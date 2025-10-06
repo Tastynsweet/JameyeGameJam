@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int playerHealth = 100;
     [SerializeField] private int soulHealth = 100;
-    [SerializeField] private float damageCooldown = 1.0f;
+    [SerializeField] private float damageCooldown = 0.5f;
     [SerializeField] private FullScreenEffectController fullScreenEffectController;
     [SerializeField] private HealthText healthText;
     [SerializeField] private HealthFillController healthFillController;
