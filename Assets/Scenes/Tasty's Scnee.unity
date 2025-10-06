@@ -5607,7 +5607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1905272337}
-  musicClip: {fileID: 8300000, guid: 1ee13433feb8893419c41c38fd29a5d5, type: 3}
+  musicClip: {fileID: 8300000, guid: f93a6c67099c38f40872ff610e8e1dcc, type: 3}
 --- !u!4 &1373473556
 Transform:
   m_ObjectHideFlags: 0
@@ -6217,7 +6217,6 @@ MonoBehaviour:
   maxxRange: 10
   maxyRange: 8
   spawnInterval: 2
-  currentEnemies: 0
   player: {fileID: 1341978987}
 --- !u!4 &2122322255
 Transform:
